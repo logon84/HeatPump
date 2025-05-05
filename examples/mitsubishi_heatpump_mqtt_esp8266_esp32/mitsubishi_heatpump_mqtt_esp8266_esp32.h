@@ -1,7 +1,9 @@
 
-//#define ESP32
-//#define OTA
-//const char* ota_password = "<YOUR OTA PASSWORD GOES HERE>";
+#define ESP32
+#define OTA
+#define LED_BUILTIN 8
+
+const char* ota_password = "update_heatpump";
 
 // wifi settings
 const char* ssid     = "<YOUR WIFI SSID GOES HERE>";
@@ -26,7 +28,7 @@ const char* heatpump_debug_set_topic    = "heatpump/debug/set";
 
 // pinouts
 const int redLedPin  = 0; // Onboard LED = digital pin 0 (red LED on adafruit ESP8266 huzzah)
-const int blueLedPin = 2; // Onboard LED = digital pin 0 (blue LED on adafruit ESP8266 huzzah)
+const int blueLedPin = 8; // Onboard LED = digital pin 0 (blue LED on adafruit ESP8266 huzzah)
 
 // sketch settings
 const unsigned int SEND_ROOM_TEMP_INTERVAL_MS = 60000;
