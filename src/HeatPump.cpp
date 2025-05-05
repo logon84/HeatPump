@@ -396,8 +396,16 @@ float HeatPump::getRoomTemperature() {
   return currentStatus.roomTemperature;
 }
 
+float HeatPump::getOutdoorTemperature() {
+  return currentStatus.outdoorTemperature;
+}
+
 bool HeatPump::getOperating() {
   return currentStatus.operating;
+}
+
+int HeatPump::getCompressorFrequency() {
+  return currentStatus.compressorFrequency;
 }
 
 float HeatPump::FahrenheitToCelsius(int tempF) {
@@ -690,9 +698,11 @@ int HeatPump::readPacket() {
               return RCVD_PKT_SETTINGS;
             }
 
-            case 0x03: { //Room temperature reading
+            case 0x03: { //Out/Room temperature reading
               heatpumpStatus receivedStatus;
-
+              int temp = data[5];
+              temp -= 128;
+              receivedStatus.outdoorTemperature = (float) temp / 2;
               if(data[6] != 0x00) {
                 int temp = data[6];
                 temp -= 128;
