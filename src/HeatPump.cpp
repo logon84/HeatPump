@@ -713,6 +713,7 @@ int HeatPump::readPacket() {
 
               if((statusChangedCallback || roomTempChangedCallback) && currentStatus.roomTemperature != receivedStatus.roomTemperature) {
                 currentStatus.roomTemperature = receivedStatus.roomTemperature;
+                currentStatus.outdoorTemperature = receivedStatus.outdoorTemperature;
 
                 if(statusChangedCallback) {
                   statusChangedCallback(currentStatus);
@@ -723,6 +724,7 @@ int HeatPump::readPacket() {
                 }
               } else {
                 currentStatus.roomTemperature = receivedStatus.roomTemperature;
+                currentStatus.outdoorTemperature = receivedStatus.outdoorTemperature;
               }
 
               return RCVD_PKT_ROOM_TEMP;
