@@ -52,6 +52,7 @@ void setup() {
   // startup mqtt connection
   mqtt_client.setServer(mqtt_server, mqtt_port);
   mqtt_client.setCallback(mqttCallback);
+  //mqtt_client.setKeepAlive(90);
   mqttConnect();
 
   // connect to the heatpump. Callbacks first so that the hpPacketDebug callback is available for connect()
@@ -101,7 +102,7 @@ void hpStatusChanged(heatpumpStatus currentStatus) {
   rootInfo["roomTemperature"] = currentStatus.roomTemperature;
   rootInfo["outdoorTemperature"] = currentStatus.outdoorTemperature;
   rootInfo["operating"] = currentStatus.operating;
-  rootInfo["compressorFrequency"] = currentStatus.compressorFrequency;
+  rootInfo["esp32Temperature"] = temperatureRead();
 
   char bufferInfo[512];
   serializeJson(rootInfo, bufferInfo);
