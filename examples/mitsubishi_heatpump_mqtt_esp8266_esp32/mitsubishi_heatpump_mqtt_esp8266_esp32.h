@@ -1,6 +1,6 @@
 
 #define ESP32
-#define OTA
+//#define OTA //succesive OTA updates makes ESP32C3 supermini becoming unreliable. Upgrade via USB C
 #define LED_BUILTIN 8
 
 const char* ota_password = "update_heatpump";
